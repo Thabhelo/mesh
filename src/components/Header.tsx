@@ -14,7 +14,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="relative z-50 pt-5">
+    <header className="sticky top-0 z-50 pt-5">
       <div className="container">
         <div className="flex items-center justify-between gap-5 px-6 py-3 rounded-full border border-primary/20 bg-background/75 shadow-[0_20px_70px_rgba(15,23,42,0.7)] backdrop-blur-2xl">
           <RouterLink to="/" className="flex items-center gap-3 group">
