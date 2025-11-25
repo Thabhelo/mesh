@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --ui-background: #0a0014;
+  --ui-foreground: #ffffff;
+  --ui-primary: #c41e3a;
+  --ui-secondary: #1a1a2e;
+}
+
+.orb-container {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.dark,
+[data-theme="dark"] {
+  --ui-background: #0a0014;
+  --ui-foreground: #ffffff;
+  --ui-primary: #c41e3a;
+  --ui-secondary: #1a1a2e;
+}
+
+html,
+body {
+  @apply bg-slate-950 text-white;
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer components {
+  .container {
+    @apply mx-auto w-full max-w-7xl px-4 lg:px-8;
+  }
+}
