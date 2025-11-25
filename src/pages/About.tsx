@@ -60,12 +60,12 @@ export default function About() {
             <div className="flex flex-col items-center text-center gap-4">
               <img
                 src="/thabhelo.jpg"
-                alt="Thabhelo Dube"
+                alt="Thabhelo Duve"
                 className="w-40 h-40 md:w-56 md:h-56 rounded-full object-cover shadow-card"
               />
               <div className="space-y-1">
                 <p className="text-xl md:text-2xl font-semibold text-foreground">
-                  Thabhelo Dube
+                  Thabhelo Duve
                 </p>
                 <p className="text-base md:text-lg text-muted-foreground">
                   Junior CS Major
