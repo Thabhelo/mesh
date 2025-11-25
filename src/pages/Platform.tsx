@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
 import { ArrowRight, Database, Cpu, BarChart3, Zap, Shield, Clock } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
+import { NeonNetworkCanvas } from '../components/NeonNetworkCanvas';
 
 export default function Platform() {
   const features = [
@@ -75,9 +76,9 @@ export default function Platform() {
 
   return (
     <PageLayout>
-      {/* Product hero */}
+      {/* Product hero with network visualization */}
       <section className="bg-background py-20 md:py-24">
-        <div className="container max-w-5xl">
+        <div className="container grid gap-12 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.3fr)] items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -115,6 +116,8 @@ export default function Platform() {
               </RouterLink>
             </div>
           </motion.div>
+
+          <NeonNetworkCanvas />
         </div>
       </section>
 
