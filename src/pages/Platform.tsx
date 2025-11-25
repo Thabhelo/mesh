@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
 import { ArrowRight, Database, Cpu, BarChart3, Zap, Shield, Clock } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
+import { ProductNetworkDiagram } from '../components/ProductNetworkDiagram';
 
 export default function Platform() {
   const features = [
@@ -74,24 +75,76 @@ export default function Platform() {
   };
 
   return (
-    <PageLayout title="Mesh Platform">
+    <PageLayout>
+      {/* Product hero with animated network diagram */}
+      <section className="bg-background py-20 md:py-24">
+        <div className="container grid gap-16 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="space-y-8"
+          >
+            <div className="space-y-4">
+              <p className="text-sm font-semibold tracking-[0.18em] uppercase text-primary">
+                Unified Public Safety Network
+              </p>
+              <h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-foreground">
+                a unified, AI‑powered data layer
+              </h1>
+            </div>
+
+            <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed">
+              Mesh finally connects fire, police, EMS, 911, hospitals, transit, and emergency
+              management into one shared, real‑time network. Every call, unit, and incident lives
+              in a single, live view.
+            </p>
+
+            <div className="flex flex-wrap gap-4">
+              <RouterLink
+                to="/contact"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg font-semibold transition-all hover:shadow-lg hover:shadow-primary/40 group"
+              >
+                Request a live demo
+                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              </RouterLink>
+              <RouterLink
+                to="/about"
+                className="inline-flex items-center justify-center px-6 py-3 border border-border hover:border-primary/60 rounded-lg font-semibold text-foreground hover:bg-primary/5 transition-all"
+              >
+                How Mesh works
+              </RouterLink>
+            </div>
+          </motion.div>
+
+          <ProductNetworkDiagram />
+        </div>
+      </section>
+
+      {/* Platform pillars */}
       <section className="container py-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="max-w-3xl mb-16"
+          className="max-w-3xl mb-12"
         >
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Three pillars of the Mesh platform
+          </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Mesh is a unified, AI-powered data layer that connects fire, police, EMS, 911, hospitals, transit, and emergency management into one shared, real-time network. Our platform bridges existing tools while ensuring agencies get a live, city-wide picture of what's happening.
+            Under the hood, Mesh combines a real‑time integration layer, an insight engine, and
+            white‑glove integration services to make every agency feel like one team.
           </p>
         </motion.div>
 
         <motion.div
-          className="grid md:grid-cols-3 gap-8 mb-24"
+          className="grid md:grid-cols-3 gap-8"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
         >
           {features.map((feature, index) => (
             <motion.div

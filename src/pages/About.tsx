@@ -40,6 +40,49 @@ export default function About() {
 
   return (
     <PageLayout>
+      {/* Super Team section */}
+      <section className="bg-background py-24">
+        <div className="container flex flex-col items-center gap-16">
+          <h1 className="text-5xl md:text-6xl font-bold text-foreground text-center">
+            Our Super Team
+          </h1>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32">
+            <div className="flex flex-col items-center text-center gap-4">
+              <img
+                src="/ayomikun.jpeg"
+                alt="Ayomikun Oyeniyi"
+                className="w-40 h-40 md:w-56 md:h-56 rounded-full object-cover shadow-card"
+              />
+              <div className="space-y-1">
+                <p className="text-xl md:text-2xl font-semibold text-foreground">
+                  Ayomikun Oyeniyi
+                </p>
+                <p className="text-base md:text-lg text-muted-foreground">
+                  Junior CS Major
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center text-center gap-4">
+              <img
+                src="/thabhelo.jpg"
+                alt="Thabhelo Dube"
+                className="w-40 h-40 md:w-56 md:h-56 rounded-full object-cover shadow-card"
+              />
+              <div className="space-y-1">
+                <p className="text-xl md:text-2xl font-semibold text-foreground">
+                  Thabhelo Dube
+                </p>
+                <p className="text-base md:text-lg text-muted-foreground">
+                  Junior CS Major
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-gradient-to-b from-background to-secondary/10 py-24">
         <div className="container">
           <motion.div

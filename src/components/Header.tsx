@@ -16,10 +16,12 @@ export default function Header() {
   return (
     <header className="relative z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
       <div className="container flex items-center justify-between py-4">
-        <RouterLink to="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-sm">M</span>
-          </div>
+        <RouterLink to="/" className="flex items-center gap-3 group">
+          <img
+            src="/mesh_logo.svg"
+            alt="Mesh logo"
+            className="h-8 w-auto"
+          />
           <span className="font-semibold text-lg text-foreground group-hover:text-primary transition-colors">
             Mesh
           </span>
