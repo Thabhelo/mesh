@@ -1,195 +1,188 @@
 # Mesh - Unified Public Safety Interoperability Platform
 
-AI-powered real-time data integration connecting fire, police, EMS, and emergency management for coordinated emergency response in Birmingham, Alabama.
+Mesh is an AI driven web experience that showcases a unified data layer for fire, police, EMS, and emergency management in Birmingham, Alabama. The site focuses on operational intelligence, interoperability, and ethical use of data.
 
 ## Project Overview
 
-Mesh is a comprehensive web platform that unifies fragmented emergency response systems across Birmingham's public safety agencies. The platform provides:
+This repository contains the marketing and product explainer site for Mesh. It highlights:
 
-- **Real-time data integration** across 14+ independent dispatch centers
-- **AI-powered operational intelligence** for surge prediction, resource load balancing, and hazard analysis
-- **Privacy-first architecture** with zero surveillance and no individual-level prediction
-- **Seamless integrations** with existing CAD, EPCR, EHR, and transit systems
+- Real time interoperability challenges in Birmingham
+- The Mesh Insight Engine for surge prediction, load balancing, and hazard analysis
+- A privacy first, community focused approach to public safety technology
+- Clear calls to action for agencies and partners who want to learn more
 
 ## Technology Stack
 
-- **Frontend Framework**: React 18.3 with TypeScript
-- **Build Tool**: Vite 5.4
-- **Styling**: Tailwind CSS 3.4
-- **Routing**: React Router DOM 7.9
-- **Animation**: Framer Motion 12.23
-- **UI Components**: lucide-react icons
-- **Backend/Database**: Supabase (PostgreSQL)
-- **Deployment Ready**: Production-optimized build
+- Frontend: React 18 with TypeScript
+- Tooling: Vite 5
+- Styling: Tailwind CSS 3 with a custom design system
+- Routing: React Router DOM 6
+- Animation: Framer Motion and an orbital background powered by ogl
+- Icons: lucide-react
+- Backend: Firebase with Firestore for storing contact form submissions
 
 ## Project Structure
 
-```
+```text
 src/
-├── components/           # Reusable UI components
-│   ├── Header.tsx       # Navigation header
-│   ├── Footer.tsx       # Footer with contact info
-│   ├── PageLayout.tsx   # Wrapper for all pages
-│   ├── Orb.tsx          # Interactive orb animation
-│   ├── Section.tsx      # Section wrapper utility
-│   ├── FeatureCard.tsx  # Reusable feature card
-│   └── CTA.tsx          # Call-to-action button
-├── pages/               # Route pages
-│   ├── Home.tsx         # Landing page
-│   ├── Platform.tsx     # Platform features overview
-│   ├── About.tsx        # Company information
-│   └── Contact.tsx      # Contact form with Supabase
-├── lib/                 # Utilities and configuration
-│   └── supabase.ts      # Supabase client setup
-├── providers/           # Context providers
-│   └── app.tsx          # Theme and app provider
-├── App.tsx              # Router configuration
-├── main.tsx             # Entry point
-└── index.css            # Global styles and theming
+├── components/              Reusable UI pieces
+│   ├── Header.tsx           Sticky glassmorphic navigation
+│   ├── Footer.tsx           Footer with navigation and contact links
+│   ├── PageLayout.tsx       Shared shell used by all pages
+│   ├── Orb.tsx              Shader based orbital background
+│   ├── NeonNetworkCanvas.tsx Network visualization on the platform page
+│   ├── Section.tsx          Section utility and titles
+│   └── FeatureCard.tsx      Generic card styling
+├── pages/                   Top level routes
+│   ├── Home.tsx             Landing page and hero
+│   ├── Platform.tsx         Platform capabilities and integrations
+│   ├── About.tsx            Team and mission
+│   ├── Contact.tsx          Contact form and FAQ
+│   ├── Privacy.tsx          Privacy Policy
+│   └── Terms.tsx            Terms of Service
+├── lib/
+│   └── firebase.ts          Firebase and Firestore setup
+├── providers/
+│   └── app.tsx              App level providers
+├── App.tsx                  Router configuration
+├── main.tsx                 React entry point
+└── index.css                Global styles and design tokens
 ```
 
-## Key Features
+## Key Pages
 
-### Landing Page (Home)
-- Hero section with animated Orb component
-- Birmingham statistics and challenge statement
-- Mesh Insight Engine capabilities showcase
-- Ethics and privacy messaging
+### Home
 
-### Platform Page
-- Detailed platform capabilities
-- How it works workflow
-- Integration ecosystem
-- Key technical features
+- Hero section with large orbital background and clear value proposition
+- "Birmingham by the Numbers" market statistics
+- Challenge framing and Mesh Insight Engine overview
+- Ethics and privacy section that explains what Mesh does not do
 
-### About Page
-- Company mission, vision, and values
-- Birmingham context and statistics
-- Team roles and structure
-- Roadmap for development phases
-- Career opportunities
+### Platform
 
-### Contact Page
-- Contact form with Supabase integration
-- Multiple contact methods
-- Frequently asked questions
-- Real-time form validation
+- Three core pillars of the Mesh platform
+- "How it works" flow for connecting, normalizing, analyzing, and responding
+- Integration capabilities across CAD, EPCR, EHR, transit, and other systems
+- Key capabilities such as surge prediction, hazard analysis, and privacy first architecture
 
-## Setup Instructions
+### About
+
+- Story behind Mesh and why Birmingham is the starting point
+- Mission, vision, values, and focus
+- Team section for the founding group
+- Roadmap for how the platform can scale over time
+
+### Contact
+
+- Contact form backed by Firestore
+- Direct email, phone, and location details
+- FAQ section addressing implementation, integration, security, and pilots
+
+### Legal
+
+- Privacy Policy and Terms of Service available at `/privacy` and `/terms`
+- Linked from the footer on every page
+
+## Getting Started
 
 ### Prerequisites
-- Node.js 16+ and npm
-- Supabase account with database access
+
+- Node.js 18 or later
+- npm
+- Firebase project with Firestore enabled
 
 ### Installation
 
-1. **Install dependencies**
+1. Install dependencies
+
    ```bash
    npm install
    ```
 
-2. **Set up environment variables**
-   Create a `.env` file with:
-   ```
-   VITE_SUPABASE_URL=your_supabase_url
-   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+2. Configure environment variables
+
+   Create a `.env` file in the project root and set:
+
+   ```text
+   VITE_FIREBASE_API_KEY=your_api_key
+   VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
+   VITE_FIREBASE_PROJECT_ID=your_project_id
+   VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+   VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+   VITE_FIREBASE_APP_ID=your_app_id
    ```
 
-3. **Start development server**
+3. Start the development server
+
    ```bash
    npm run dev
    ```
 
-4. **Build for production**
+4. Create a production build
+
    ```bash
    npm run build
    ```
 
-## Development Scripts
+## Available Scripts
 
-- `npm run dev` - Start development server with hot reload
-- `npm run build` - Build optimized production bundle
-- `npm run preview` - Preview production build locally
-- `npm run lint` - Run ESLint code quality checks
-- `npm run typecheck` - Run TypeScript type checking
+- `npm run dev`  Start the Vite development server with hot reload
+- `npm run build`  Build an optimized production bundle
+- `npm run preview`  Preview the production build locally
+- `npm run lint`  Run ESLint
+- `npm run typecheck`  Run TypeScript type checking
 
-## Database Schema
+## Data Model
 
-### contact_requests table
-Stores contact form submissions with fields:
-- `id` (UUID primary key)
-- `name` (text, required)
-- `email` (text, required)
-- `company` (text, optional)
-- `type` (enum: 'demo', 'partnership', 'general')
-- `message` (text, required)
-- `created_at` (timestamp)
+The contact form writes to a Firestore collection named `contact_requests`.
 
-**Security**: Row-level security enabled with policies for anonymous submissions and admin-only reads.
+Each document includes:
+
+- `name`  string, required
+- `email`  string, required
+- `company`  string, optional
+- `type`  string, one of `demo`, `partnership`, or `general`
+- `message`  string, required
+- `timestamp`  JavaScript Date set on submission
+
+Authentication rules and access control should be configured in the Firebase console based on your deployment needs.
 
 ## Design System
 
-### Color Palette
-- **Primary**: Red (#c41e3a) - for CTAs and highlights
-- **Background**: Slate 950 (#030712) - dark base
-- **Secondary**: Slate gradients for depth
-- **Accent**: Red/crimson for interactive elements
+The design system is defined in `index.css` using CSS variables for colors, radii, shadows, and transitions.
 
-### Typography
-- **Headings**: Bold sans-serif (5xl-6xl for main, 4xl-5xl for sections)
-- **Body**: Regular sans-serif at 16-18px
-- **Code**: Monospace for technical content
-
-### Components
-- Rounded corners (8px default)
-- Border colors: slate-800 with red-500 hover states
-- Shadow effects with red glow on hover
-- Smooth transitions and animations via Framer Motion
-
-## Animations & Interactions
-
-- **Orb component**: Responds to mouse movement with smooth scaling and rotation
-- **Page transitions**: Fade in/out with staggered child animations
-- **Button hover states**: Scale, color, and shadow changes
-- **Scroll animations**: Elements fade and slide in on viewport entry
-- **Form validation**: Real-time feedback with loading and success states
-
-## Performance Optimizations
-
-- Code splitting via Vite
-- Lazy component loading with React.lazy
-- Image optimization (linked from Unsplash)
-- CSS purging with Tailwind
-- Production bundle: ~468KB JavaScript, ~18KB CSS (gzipped: 142KB JS, 4KB CSS)
+- Palette is centered on a warm primary orange with complementary amber secondary tones
+- Cards and navigation use soft glassmorphism with subtle shadows
+- Typography uses the Nunito family for headings and body text
+- Animations rely on Framer Motion for section reveals and orbital motion
 
 ## Accessibility
 
-- Semantic HTML structure
-- ARIA labels on interactive elements
-- Color contrast ratios meet WCAG AA standards
-- Keyboard navigation support
-- Form validation with clear error messages
+The UI is built with:
+
+- Semantic HTML where possible
+- Focusable and keyboard accessible interactive elements
+- Text sized for comfortable reading on both desktop and mobile
+- High contrast between foreground text and background colors
 
 ## Deployment
 
-The project is production-ready and can be deployed to:
+The app is a static React build generated by Vite. It can be hosted on:
+
 - Vercel
 - Netlify
-- AWS Amplify
-- Traditional web servers
+- Firebase Hosting
+- Any static file host or traditional web server
 
-Ensure environment variables are configured in your hosting platform.
+Make sure the environment variables listed above are configured in your hosting platform.
 
-## Contact & Support
+## Contact
 
-- **Email**: info@meshplatform.io
-- **Phone**: (205) 555-0100
-- **Location**: Birmingham, AL
+- Email: `thabheloduve@gmail.com`
+- Phone: `+1 (256) 375-4207`
+- Location: Birmingham, Alabama, United States
 
 ## License
 
 Proprietary - Mesh Platform 2025
 
----
-
-Built with React, Vite, Tailwind CSS, and Supabase. Serving public safety in Birmingham, Alabama.
