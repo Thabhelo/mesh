@@ -103,12 +103,12 @@ export default function Footer() {
               © {currentYear} Mesh. All rights reserved. Powering public safety interoperability in Birmingham.
             </p>
             <div className="flex items-center gap-6">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+              <RouterLink to="/privacy" className="text-muted-foreground hover:text-primary transition-colors text-sm">
                 Privacy Policy
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+              </RouterLink>
+              <RouterLink to="/terms" className="text-muted-foreground hover:text-primary transition-colors text-sm">
                 Terms of Service
-              </a>
+              </RouterLink>
             </div>
           </div>
         </div>
