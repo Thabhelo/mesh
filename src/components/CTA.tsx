@@ -20,9 +20,12 @@ export default function CTA({
   children,
 }: CTAProps) {
   const variants = {
-    primary: 'px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold transition-all hover:shadow-lg hover:shadow-red-500/50 group',
-    secondary: 'px-6 py-3 border border-slate-700 hover:border-red-500/50 text-white rounded-lg font-semibold transition-all hover:bg-red-500/10',
-    tertiary: 'inline-flex items-center gap-2 text-red-400 hover:text-red-300 transition-colors font-medium',
+    primary:
+      'px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg font-semibold transition-all hover:shadow-lg hover:shadow-primary/40 group',
+    secondary:
+      'px-6 py-3 border border-border hover:border-primary/60 text-foreground rounded-lg font-semibold transition-all hover:bg-primary/5',
+    tertiary:
+      'inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium',
   };
 
   const isInternal = href.startsWith('/');

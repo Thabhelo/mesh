@@ -10,7 +10,7 @@ interface PageLayoutProps {
 
 export default function PageLayout({ children, title }: PageLayoutProps) {
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950">
+    <div className="min-h-screen flex flex-col bg-background">
       <Header />
       <motion.main
         initial={{ opacity: 0 }}
@@ -21,7 +21,7 @@ export default function PageLayout({ children, title }: PageLayoutProps) {
       >
         {title && (
           <div className="container py-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-white">{title}</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground">{title}</h1>
           </div>
         )}
         {children}

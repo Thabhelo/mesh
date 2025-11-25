@@ -11,7 +11,7 @@ interface OrbProps {
 export default function Orb({
   hoverIntensity = 2,
   rotateOnHover = true,
-  hue = 0,
+  hue = 25, // Updated to match primary orange hue
   forceHoverState = false,
 }: OrbProps) {
   const [isHovering, setIsHovering] = useState(forceHoverState);
@@ -51,9 +51,9 @@ export default function Orb({
       className="absolute inset-0 overflow-hidden orb-container"
     >
       <motion.div
-        className="absolute w-96 h-96 rounded-full blur-3xl opacity-60"
+        className="absolute w-96 h-96 rounded-full blur-3xl opacity-40"
         style={{
-          background: `conic-gradient(from ${hue}deg, #c41e3a, #8b1a1a, #c41e3a)`,
+          background: `conic-gradient(from ${hue}deg, hsl(25 95% 53%), hsl(39 100% 57%), hsl(25 95% 53%))`,
         }}
         animate={{
           scale: isHovering ? 1 + hoverIntensity * 0.1 : 1,
@@ -70,9 +70,9 @@ export default function Orb({
         initial={{ x: '50%', y: '50%' }}
       />
       <motion.div
-        className="absolute w-72 h-72 rounded-full blur-2xl opacity-40"
+        className="absolute w-72 h-72 rounded-full blur-2xl opacity-30"
         style={{
-          background: `conic-gradient(from ${hue + 120}deg, #8b1a1a, #c41e3a, #8b1a1a)`,
+          background: `conic-gradient(from ${hue + 120}deg, hsl(39 100% 57%), hsl(25 95% 53%), hsl(39 100% 57%))`,
         }}
         animate={{
           scale: isHovering ? 1 + (hoverIntensity * 0.08) : 0.8,

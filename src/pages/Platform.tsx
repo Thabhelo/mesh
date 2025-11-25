@@ -82,7 +82,7 @@ export default function Platform() {
           transition={{ duration: 0.5 }}
           className="max-w-3xl mb-16"
         >
-          <p className="text-lg text-slate-300 leading-relaxed">
+          <p className="text-lg text-muted-foreground leading-relaxed">
             Mesh is a unified, AI-powered data layer that connects fire, police, EMS, 911, hospitals, transit, and emergency management into one shared, real-time network. Our platform bridges existing tools while ensuring agencies get a live, city-wide picture of what's happening.
           </p>
         </motion.div>
@@ -97,17 +97,17 @@ export default function Platform() {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="p-8 rounded-lg border border-slate-800 hover:border-red-500/50 hover:bg-red-500/5 transition-all group"
+              className="p-8 rounded-lg border border-border hover:border-primary/60 hover:bg-primary/5 transition-all group shadow-card"
             >
-              <div className="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center mb-4 group-hover:bg-red-500/20 transition-colors">
-                <feature.icon size={24} className="text-red-500" />
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <feature.icon size={24} className="text-primary" />
               </div>
-              <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
-              <p className="text-slate-400 mb-6">{feature.description}</p>
+              <h3 className="text-xl font-semibold text-foreground mb-2">{feature.title}</h3>
+              <p className="text-muted-foreground mb-6">{feature.description}</p>
               <ul className="space-y-2">
                 {feature.details.map((detail, idx) => (
-                  <li key={idx} className="text-sm text-slate-400 flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 bg-red-500 rounded-full mt-1.5 flex-shrink-0" />
+                  <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 flex-shrink-0" />
                     {detail}
                   </li>
                 ))}
@@ -117,7 +117,7 @@ export default function Platform() {
         </motion.div>
       </section>
 
-      <section className="bg-gradient-to-b from-slate-900 to-slate-950 py-24">
+      <section className="bg-gradient-to-b from-background to-secondary/15 py-24">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -126,8 +126,8 @@ export default function Platform() {
             transition={{ duration: 0.5 }}
             className="mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">How It Works</h2>
-            <p className="text-lg text-slate-300 max-w-2xl">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">How It Works</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl">
               Mesh translates and streams all public safety information into one standardized feed, eliminating silos and enabling coordinated response.
             </p>
           </motion.div>
@@ -150,15 +150,15 @@ export default function Platform() {
                 variants={itemVariants}
                 className="relative"
               >
-                <div className="p-6 rounded-lg border border-slate-800 hover:border-red-500/50 transition-colors">
-                  <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white font-bold mb-4">
+                <div className="p-6 rounded-lg border border-border hover:border-primary/60 transition-colors bg-card shadow-card">
+                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold mb-4">
                     {step.num}
                   </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">{step.title}</h3>
-                  <p className="text-slate-400 text-sm">{step.desc}</p>
+                  <h3 className="text-lg font-semibold text-foreground mb-2">{step.title}</h3>
+                  <p className="text-muted-foreground text-sm">{step.desc}</p>
                 </div>
                 {index < 3 && (
-                  <div className="hidden md:block absolute top-1/2 right-0 transform translate-x-1/2 text-red-500">
+                  <div className="hidden md:block absolute top-1/2 right-0 transform translate-x-1/2 text-primary">
                     <ArrowRight size={20} />
                   </div>
                 )}
@@ -176,8 +176,8 @@ export default function Platform() {
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Integration Capabilities</h2>
-          <p className="text-lg text-slate-300 max-w-2xl">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Integration Capabilities</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl">
             Mesh seamlessly connects to the systems your agencies already use, ensuring no disruption to existing workflows.
           </p>
         </motion.div>
@@ -193,16 +193,16 @@ export default function Platform() {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="p-4 rounded-lg border border-slate-800 hover:border-red-500/50 hover:bg-red-500/5 transition-all flex items-center gap-3"
+              className="p-4 rounded-lg border border-border hover:border-primary/60 hover:bg-primary/5 transition-all flex items-center gap-3 bg-card shadow-card"
             >
-              <div className="w-2 h-2 bg-red-500 rounded-full flex-shrink-0" />
-              <span className="text-white">{integration}</span>
+              <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0" />
+              <span className="text-foreground">{integration}</span>
             </motion.div>
           ))}
         </motion.div>
       </section>
 
-      <section className="bg-gradient-to-b from-slate-950 to-slate-900 py-24">
+      <section className="bg-gradient-to-b from-background to-muted py-24">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -211,7 +211,7 @@ export default function Platform() {
             transition={{ duration: 0.5 }}
             className="mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Key Capabilities</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Key Capabilities</h2>
           </motion.div>
 
           <motion.div
@@ -256,13 +256,13 @@ export default function Platform() {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="p-6 rounded-lg border border-slate-800 hover:border-red-500/50 group transition-all"
+                className="p-6 rounded-lg border border-border hover:border-primary/60 group transition-all bg-card shadow-card"
               >
-                <div className="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center mb-4 group-hover:bg-red-500/20 transition-colors">
-                  <cap.icon size={24} className="text-red-500" />
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                  <cap.icon size={24} className="text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">{cap.title}</h3>
-                <p className="text-slate-400 text-sm">{cap.desc}</p>
+                <h3 className="text-lg font-semibold text-foreground mb-2">{cap.title}</h3>
+                <p className="text-muted-foreground text-sm">{cap.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -276,13 +276,13 @@ export default function Platform() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Transform Public Safety Response?</h2>
-          <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Ready to Transform Public Safety Response?</h2>
+          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Let us show you how Mesh can unite your agencies and save lives through real-time intelligence.
           </p>
           <RouterLink
             to="/contact"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold transition-all hover:shadow-lg hover:shadow-red-500/50 group"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg font-semibold transition-all hover:shadow-lg hover:shadow-primary/50 group"
           >
             Schedule a Demo
             <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />

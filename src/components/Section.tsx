@@ -17,9 +17,9 @@ export default function Section({
   id,
 }: SectionProps) {
   const variantClasses = {
-    default: 'bg-slate-950',
-    dark: 'bg-gradient-to-b from-slate-900 to-slate-950',
-    gradient: 'bg-gradient-to-r from-red-600/10 to-red-500/5 border-y border-red-500/20',
+    default: 'bg-background',
+    dark: 'bg-muted',
+    gradient: 'bg-gradient-to-r from-primary/10 to-secondary/10 border-y border-primary/20',
   };
 
   return (
@@ -49,8 +49,8 @@ export function SectionTitle({
       transition={{ duration: 0.5 }}
       className={className}
     >
-      <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">{children}</h2>
-      {subtitle && <p className="text-lg text-slate-300">{subtitle}</p>}
+      <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">{children}</h2>
+      {subtitle && <p className="text-lg text-muted-foreground">{subtitle}</p>}
     </motion.div>
   );
 }

@@ -2,12 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: dark;
-  --ui-background: #0a0014;
-  --ui-foreground: #ffffff;
-  --ui-primary: #c41e3a;
-  --ui-secondary: #1a1a2e;
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 25 95% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 39 100% 57%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 25 100% 97%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 25 100% 95%;
+    --accent-foreground: 25 95% 53%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 25 100% 90%;
+    --input: 25 100% 90%;
+    --ring: 25 95% 53%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(25 95% 53%) 0%, hsl(39 100% 57%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(25 100% 97%) 100%);
+    --gradient-glow: radial-gradient(circle at 50% 0%, hsl(25 95% 53% / 0.15) 0%, transparent 50%);
+    
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsl(25 95% 53% / 0.2);
+    --shadow-glow-lg: 0 0 60px hsl(25 95% 53% / 0.3), 0 0 100px hsl(25 95% 53% / 0.15);
+    --shadow-card: 0 4px 20px hsl(25 100% 90% / 0.3);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
 .orb-container {
@@ -15,20 +68,6 @@
   z-index: 0;
   width: 100%;
   height: 100%;
-}
-
-.dark,
-[data-theme="dark"] {
-  --ui-background: #0a0014;
-  --ui-foreground: #ffffff;
-  --ui-primary: #c41e3a;
-  --ui-secondary: #1a1a2e;
-}
-
-html,
-body {
-  @apply bg-slate-950 text-white;
-  color-scheme: dark;
 }
 
 html {

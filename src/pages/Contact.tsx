@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, ArrowRight, Check, AlertCircle } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
-import { supabase } from '../lib/supabase';
+import { db } from '../lib/firebase';
+import { collection, addDoc } from 'firebase/firestore';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -22,9 +23,10 @@ export default function Contact() {
     setErrorMessage('');
 
     try {
-      const { error } = await supabase.from('contact_requests').insert([formData]);
-
-      if (error) throw error;
+      await addDoc(collection(db, 'contact_requests'), {
+        ...formData,
+        timestamp: new Date()
+      });
 
       setStatus('success');
       setFormData({ name: '', email: '', company: '', type: 'demo', message: '' });
@@ -71,8 +73,8 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Get in Touch</h1>
-            <p className="text-lg text-slate-300 mb-8 leading-relaxed">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Get in Touch</h1>
+            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
               Ready to transform emergency response in Birmingham? We'd love to hear from you. Reach out to schedule a demo, explore partnerships, or learn more about how Mesh can help your agencies.
             </p>
 
@@ -83,48 +85,48 @@ export default function Contact() {
               animate="visible"
             >
               <motion.div variants={itemVariants} className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0">
-                  <Mail size={24} className="text-red-500" />
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Mail size={24} className="text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-white mb-1">Email</h3>
+                  <h3 className="text-lg font-semibold text-foreground mb-1">Email</h3>
                   <a
                     href="mailto:info@meshplatform.io"
-                    className="text-slate-400 hover:text-red-400 transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors"
                   >
                     info@meshplatform.io
                   </a>
-                  <p className="text-slate-500 text-sm mt-1">We respond within 24 hours</p>
+                  <p className="text-muted-foreground text-sm mt-1">We respond within 24 hours</p>
                 </div>
               </motion.div>
 
               <motion.div variants={itemVariants} className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0">
-                  <Phone size={24} className="text-red-500" />
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Phone size={24} className="text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-white mb-1">Phone</h3>
+                  <h3 className="text-lg font-semibold text-foreground mb-1">Phone</h3>
                   <a
                     href="tel:+1205555100"
-                    className="text-slate-400 hover:text-red-400 transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors"
                   >
                     (205) 555-0100
                   </a>
-                  <p className="text-slate-500 text-sm mt-1">Available Monday-Friday, 8am-6pm CST</p>
+                  <p className="text-muted-foreground text-sm mt-1">Available Monday-Friday, 8am-6pm CST</p>
                 </div>
               </motion.div>
 
               <motion.div variants={itemVariants} className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0">
-                  <MapPin size={24} className="text-red-500" />
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <MapPin size={24} className="text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-white mb-1">Location</h3>
-                  <p className="text-slate-400">
+                  <h3 className="text-lg font-semibold text-foreground mb-1">Location</h3>
+                  <p className="text-muted-foreground">
                     Birmingham, AL<br />
                     United States
                   </p>
-                  <p className="text-slate-500 text-sm mt-1">Serving all of Jefferson County and beyond</p>
+                  <p className="text-muted-foreground text-sm mt-1">Serving all of Jefferson County and beyond</p>
                 </div>
               </motion.div>
             </motion.div>
@@ -134,55 +136,55 @@ export default function Contact() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="p-8 rounded-lg border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950"
+            className="p-8 rounded-lg border border-border bg-card shadow-card"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-white mb-2">Name *</label>
+                <label className="block text-sm font-medium text-foreground mb-2">Name *</label>
                 <input
                   type="text"
                   name="name"
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
+                  className="w-full px-4 py-2 rounded-lg bg-background border border-input text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-colors"
                   placeholder="Your full name"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-white mb-2">Email *</label>
+                <label className="block text-sm font-medium text-foreground mb-2">Email *</label>
                 <input
                   type="email"
                   name="email"
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
+                  className="w-full px-4 py-2 rounded-lg bg-background border border-input text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-colors"
                   placeholder="your@email.com"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-white mb-2">Organization</label>
+                <label className="block text-sm font-medium text-foreground mb-2">Organization</label>
                 <input
                   type="text"
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
+                  className="w-full px-4 py-2 rounded-lg bg-background border border-input text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-colors"
                   placeholder="Your agency or organization"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-white mb-2">Type of Inquiry *</label>
+                <label className="block text-sm font-medium text-foreground mb-2">Type of Inquiry *</label>
                 <select
                   name="type"
                   required
                   value={formData.type}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white focus:outline-none focus:border-red-500 transition-colors"
+                  className="w-full px-4 py-2 rounded-lg bg-background border border-input text-foreground focus:outline-none focus:border-primary transition-colors"
                 >
                   <option value="demo">Request a Demo</option>
                   <option value="partnership">Partnership Inquiry</option>
@@ -191,14 +193,14 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-white mb-2">Message *</label>
+                <label className="block text-sm font-medium text-foreground mb-2">Message *</label>
                 <textarea
                   name="message"
                   required
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
-                  className="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors resize-none"
+                  className="w-full px-4 py-2 rounded-lg bg-background border border-input text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-colors resize-none"
                   placeholder="Tell us about your needs and how Mesh can help..."
                 />
               </div>
@@ -220,7 +222,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={status === 'loading' || status === 'success'}
-                className="w-full px-6 py-3 bg-red-600 hover:bg-red-700 disabled:bg-slate-700 text-white rounded-lg font-semibold transition-all hover:shadow-lg hover:shadow-red-500/50 flex items-center justify-center gap-2 group disabled:cursor-not-allowed"
+                className="w-full px-6 py-3 bg-primary hover:bg-primary/90 disabled:bg-muted text-primary-foreground rounded-lg font-semibold transition-all hover:shadow-lg hover:shadow-primary/50 flex items-center justify-center gap-2 group disabled:cursor-not-allowed"
               >
                 {status === 'loading' ? (
                   <>
@@ -240,7 +242,7 @@ export default function Contact() {
                 )}
               </button>
 
-              <p className="text-xs text-slate-500 text-center">
+              <p className="text-xs text-muted-foreground text-center">
                 We respect your privacy. Your information will only be used to respond to your inquiry.
               </p>
             </form>
@@ -248,7 +250,7 @@ export default function Contact() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-b from-slate-900 to-slate-950 py-24">
+      <section className="bg-gradient-to-b from-background to-secondary/15 py-24">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -257,8 +259,8 @@ export default function Contact() {
             transition={{ duration: 0.5 }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Frequently Asked Questions</h2>
-            <p className="text-lg text-slate-300">Quick answers to common questions about Mesh</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Frequently Asked Questions</h2>
+            <p className="text-lg text-muted-foreground">Quick answers to common questions about Mesh</p>
           </motion.div>
 
           <motion.div
@@ -297,10 +299,10 @@ export default function Contact() {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="p-6 rounded-lg border border-slate-800 hover:border-red-500/50 transition-colors"
+                className="p-6 rounded-lg border border-border hover:border-primary/60 transition-colors bg-card shadow-card"
               >
-                <h3 className="text-lg font-semibold text-white mb-3">{faq.q}</h3>
-                <p className="text-slate-400">{faq.a}</p>
+                <h3 className="text-lg font-semibold text-foreground mb-3">{faq.q}</h3>
+                <p className="text-muted-foreground">{faq.a}</p>
               </motion.div>
             ))}
           </motion.div>

@@ -5,5 +5,5 @@ interface AppProviderProps {
 }
 
 export function AppProvider({ children }: AppProviderProps) {
-  return <div className="dark">{children}</div>;
+  return <div className="min-h-screen bg-background font-sans antialiased">{children}</div>;
 }

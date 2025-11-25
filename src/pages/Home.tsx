@@ -57,7 +57,7 @@ export default function Home() {
     <PageLayout>
       <section className="relative min-h-screen flex items-center pt-16">
         <div className="absolute inset-0 z-0">
-          <Orb hoverIntensity={2} rotateOnHover={true} hue={0} forceHoverState={false} />
+          <Orb hoverIntensity={2} rotateOnHover={true} hue={25} forceHoverState={false} />
         </div>
 
         <div className="container relative z-10">
@@ -67,30 +67,30 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20 mb-8">
-              <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-              <span className="text-sm text-red-400">Now Powering Public Safety in Birmingham</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8">
+              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+              <span className="text-sm text-primary">Now Powering Public Safety in Birmingham</span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              Real-Time Public Safety <span className="text-red-500">Interoperability</span>
+            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight">
+              Real-Time Public Safety <span className="text-primary">Interoperability</span>
             </h1>
 
-            <p className="text-xl text-slate-300 mb-8 max-w-2xl leading-relaxed">
+            <p className="text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed">
               Mesh unifies fragmented emergency response across fire, police, EMS, and emergency management with AI-powered operational intelligence that saves lives.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <RouterLink
                 to="/contact"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold transition-all hover:shadow-lg hover:shadow-red-500/50 group"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg font-semibold transition-all hover:shadow-lg hover:shadow-primary/50 group"
               >
                 Request Demo
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </RouterLink>
               <RouterLink
                 to="/platform"
-                className="inline-flex items-center justify-center px-6 py-3 border border-slate-700 hover:border-red-500/50 text-white rounded-lg font-semibold transition-all hover:bg-red-500/10"
+                className="inline-flex items-center justify-center px-6 py-3 border border-border hover:border-primary/50 text-foreground rounded-lg font-semibold transition-all hover:bg-primary/10"
               >
                 Learn More
               </RouterLink>
@@ -109,14 +109,14 @@ export default function Home() {
         >
           {stats.map((stat, index) => (
             <motion.div key={index} variants={itemVariants} className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-red-500 mb-2">{stat.value}</div>
-              <div className="text-slate-400">{stat.label}</div>
+              <div className="text-4xl md:text-5xl font-bold text-primary mb-2">{stat.value}</div>
+              <div className="text-muted-foreground">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>
       </section>
 
-      <section className="bg-gradient-to-b from-slate-900 to-slate-950 py-24">
+      <section className="bg-gradient-to-b from-background to-secondary/20 py-24">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -125,8 +125,8 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="max-w-3xl mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">The Challenge</h2>
-            <p className="text-lg text-slate-300 leading-relaxed">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">The Challenge</h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
               Birmingham's emergency response ecosystem spans 14 independent dispatch centers, multiple CAD systems, and dozens of agencies operating in silos. Without real-time data integration, critical incidents are delayed, resources are misallocated, and lives are at risk.
             </p>
           </motion.div>
@@ -146,13 +146,13 @@ export default function Home() {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="p-6 rounded-lg border border-slate-800 hover:border-red-500/50 transition-colors group"
+                className="p-6 rounded-lg border border-border hover:border-primary/50 transition-colors group"
               >
-                <div className="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center mb-4 group-hover:bg-red-500/20 transition-colors">
-                  <item.icon size={24} className="text-red-500" />
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                  <item.icon size={24} className="text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
-                <p className="text-slate-400">{item.desc}</p>
+                <h3 className="text-lg font-semibold text-foreground mb-2">{item.title}</h3>
+                <p className="text-muted-foreground">{item.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -167,8 +167,8 @@ export default function Home() {
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Mesh Insight Engine</h2>
-          <p className="text-lg text-slate-300 leading-relaxed max-w-2xl">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Mesh Insight Engine</h2>
+          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
             Three mission-critical capabilities powered by AI, providing operations-focused intelligence without surveillance or individual-level prediction.
           </p>
         </motion.div>
@@ -184,17 +184,17 @@ export default function Home() {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="p-8 rounded-lg border border-slate-800 hover:border-red-500/50 hover:bg-red-500/5 transition-all group"
+              className="p-8 rounded-lg border border-border hover:border-primary/50 hover:bg-primary/5 transition-all group"
             >
-              <div className="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center mb-4 group-hover:bg-red-500/20 transition-colors">
-                <cap.icon size={24} className="text-red-500" />
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <cap.icon size={24} className="text-primary" />
               </div>
-              <h3 className="text-xl font-semibold text-white mb-2">{cap.title}</h3>
-              <p className="text-slate-400 mb-4">{cap.description}</p>
+              <h3 className="text-xl font-semibold text-foreground mb-2">{cap.title}</h3>
+              <p className="text-muted-foreground mb-4">{cap.description}</p>
               <ul className="space-y-2">
                 {cap.features.map((feature, idx) => (
-                  <li key={idx} className="text-sm text-slate-400 flex items-center gap-2">
-                    <span className="w-1 h-1 bg-red-500 rounded-full" />
+                  <li key={idx} className="text-sm text-muted-foreground flex items-center gap-2">
+                    <span className="w-1 h-1 bg-primary rounded-full" />
                     {feature}
                   </li>
                 ))}
@@ -204,7 +204,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section className="bg-gradient-to-r from-red-600/10 to-red-500/5 border-y border-red-500/20 py-24">
+      <section className="bg-gradient-to-r from-primary/10 to-secondary/10 border-y border-primary/20 py-24">
         <div className="container text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -212,13 +212,13 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Ethical, Transparent, Community-First</h2>
-            <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Ethical, Transparent, Community-First</h2>
+            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
               Mesh avoids surveillance, facial recognition, and individual-level prediction. All intelligence is operations-focused, auditable, and aligned with community privacy standards.
             </p>
             <RouterLink
               to="/platform"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold transition-all hover:shadow-lg hover:shadow-red-500/50"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg font-semibold transition-all hover:shadow-lg hover:shadow-primary/50"
             >
               Explore the Platform
               <ArrowRight size={20} />
