@@ -110,7 +110,7 @@ export default function Contact() {
                     href="tel:+12563754207"
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    2563754207
+                    +1 (256) 375-4207
                   </a>
                   <p className="text-muted-foreground text-sm mt-1">Available Monday-Friday, 8am-6pm CST</p>
                 </div>

@@ -110,16 +110,30 @@ export default function Home() {
 
       <section className="container py-24">
         <motion.div
-          className="grid md:grid-cols-4 gap-8"
+          className="grid md:grid-cols-4 gap-6 md:gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
         >
           {stats.map((stat, index) => (
-            <motion.div key={index} variants={itemVariants} className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-primary mb-2">{stat.value}</div>
-              <div className="text-muted-foreground">{stat.label}</div>
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              className="relative overflow-hidden rounded-2xl border border-primary/15 bg-card/80 backdrop-blur-xl px-5 py-6 shadow-[0_18px_45px_rgba(15,23,42,0.35)] group"
+            >
+              <div className="absolute inset-0 pointer-events-none opacity-60 group-hover:opacity-90 transition-opacity duration-500">
+                <div className="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-primary/40 to-secondary/30 rounded-full blur-3xl" />
+                <div className="absolute -bottom-12 -left-8 w-28 h-28 bg-gradient-to-tr from-primary/25 to-secondary/20 rounded-full blur-3xl" />
+              </div>
+              <div className="relative text-center space-y-1">
+                <div className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent tracking-tight">
+                  {stat.value}
+                </div>
+                <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground/80">
+                  {stat.label}
+                </div>
+              </div>
             </motion.div>
           ))}
         </motion.div>
