@@ -140,48 +140,6 @@ export default function About() {
         </motion.div>
       </section>
 
-      <section className="bg-gradient-to-b from-background to-muted py-24">
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mb-12"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Birmingham by the Numbers</h2>
-            <p className="text-lg text-muted-foreground">
-              Understanding the scale and complexity of Birmingham's emergency response landscape.
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="grid md:grid-cols-4 gap-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-          >
-            {[
-              { num: '1.1M+', label: 'Metro Population', desc: 'Spanning multiple counties and jurisdictions' },
-              { num: '200K+', label: 'Annual Emergencies', desc: 'EMS, fire, police, and hazmat incidents' },
-              { num: '14', label: 'Dispatch Centers', desc: 'Operating independently without data integration' },
-              { num: '4M', label: 'Initial Investment', desc: 'Jefferson County allocated for 15 new ambulances alone' },
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="p-6 rounded-lg border border-border hover:border-primary/60 transition-colors text-center bg-card shadow-card"
-              >
-                <div className="text-4xl font-bold text-primary mb-2">{stat.num}</div>
-                <div className="text-lg font-semibold text-foreground mb-2">{stat.label}</div>
-                <p className="text-muted-foreground text-sm">{stat.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
       <section className="bg-gradient-to-b from-background to-secondary/15 py-24">
         <div className="container">
           <motion.div

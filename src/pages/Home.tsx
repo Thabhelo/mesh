@@ -6,10 +6,24 @@ import Orb from '../components/Orb';
 
 export default function Home() {
   const stats = [
-    { label: 'Metro Population', value: '1.1M+' },
-    { label: 'Annual EMS Calls', value: '200K+' },
-    { label: 'Dispatch Centers', value: '14' },
-    { label: 'Agencies Connected', value: 'Unlimited' },
+    {
+      value: '~70%',
+      description:
+        'of 911 centers report limited or no ability to share real-time data with other emergency response agencies',
+      source: 'APCO',
+    },
+    {
+      value: '50%+',
+      description:
+        'of U.S. 911 centers still rely on manual radio or phone relay to pass information between agencies',
+      source: 'National 911 Program',
+    },
+    {
+      value: '80%',
+      description:
+        'of first responders believe that interoperability across agencies, regardless of network or device, is urgently needed',
+      source: 'Verizon Frontline',
+    },
   ];
 
   const capabilities = [
@@ -109,8 +123,16 @@ export default function Home() {
       </section>
 
       <section className="container py-24">
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            Birmingham by the Numbers
+          </h2>
+          <p className="text-lg text-muted-foreground">
+            Understanding the scale and complexity of Birmingham&apos;s emergency response landscape.
+          </p>
+        </div>
         <motion.div
-          className="grid md:grid-cols-4 gap-6 md:gap-8"
+          className="grid md:grid-cols-3 gap-6 md:gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -120,19 +142,22 @@ export default function Home() {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="relative overflow-hidden rounded-2xl border border-primary/15 bg-card/80 backdrop-blur-xl px-5 py-6 shadow-[0_18px_45px_rgba(15,23,42,0.35)] group"
+              className="relative overflow-hidden rounded-2xl border border-primary/15 bg-card/80 backdrop-blur-xl px-6 py-8 shadow-[0_18px_45px_rgba(15,23,42,0.35)] group"
             >
               <div className="absolute inset-0 pointer-events-none opacity-60 group-hover:opacity-90 transition-opacity duration-500">
                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-primary/40 to-secondary/30 rounded-full blur-3xl" />
                 <div className="absolute -bottom-12 -left-8 w-28 h-28 bg-gradient-to-tr from-primary/25 to-secondary/20 rounded-full blur-3xl" />
               </div>
-              <div className="relative text-center space-y-1">
+              <div className="relative text-center space-y-3">
                 <div className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent tracking-tight">
                   {stat.value}
                 </div>
-                <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground/80">
-                  {stat.label}
-                </div>
+                <p className="text-sm md:text-base text-foreground font-medium leading-relaxed">
+                  {stat.description}
+                </p>
+                {stat.source && (
+                  <p className="text-xs text-muted-foreground mt-1">({stat.source})</p>
+                )}
               </div>
             </motion.div>
           ))}
