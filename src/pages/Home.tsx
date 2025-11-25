@@ -56,46 +56,55 @@ export default function Home() {
   return (
     <PageLayout>
       <section className="relative min-h-screen flex items-center pt-16">
-        <div className="absolute inset-0 z-0">
-          <Orb hoverIntensity={2} rotateOnHover={true} hue={25} forceHoverState={false} />
-        </div>
-
         <div className="container relative z-10">
-          <motion.div
-            className="max-w-3xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8">
-              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              <span className="text-sm text-primary">Now Powering Public Safety in Birmingham</span>
-            </div>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div
+              className="max-w-3xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8">
+                <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                <span className="text-sm text-primary">Now Powering Public Safety in Birmingham</span>
+              </div>
 
-            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight">
-              Real-Time Public Safety <span className="text-primary">Interoperability</span>
-            </h1>
+              <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight">
+                Real-Time Public Safety <span className="text-primary">Interoperability</span>
+              </h1>
 
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed">
-              Mesh unifies fragmented emergency response across fire, police, EMS, and emergency management with AI-powered operational intelligence that saves lives.
-            </p>
+              <p className="text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed">
+                Mesh unifies fragmented emergency response across fire, police, EMS, and emergency management with AI-powered operational intelligence that saves lives.
+              </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <RouterLink
-                to="/contact"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg font-semibold transition-all hover:shadow-lg hover:shadow-primary/50 group"
-              >
-                Request Demo
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </RouterLink>
-              <RouterLink
-                to="/platform"
-                className="inline-flex items-center justify-center px-6 py-3 border border-border hover:border-primary/50 text-foreground rounded-lg font-semibold transition-all hover:bg-primary/10"
-              >
-                Learn More
-              </RouterLink>
-            </div>
-          </motion.div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <RouterLink
+                  to="/contact"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg font-semibold transition-all hover:shadow-lg hover:shadow-primary/50 group"
+                >
+                  Request Demo
+                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                </RouterLink>
+                <RouterLink
+                  to="/platform"
+                  className="inline-flex items-center justify-center px-6 py-3 border border-border hover:border-primary/50 text-foreground rounded-lg font-semibold transition-all hover:bg-primary/10"
+                >
+                  Learn More
+                </RouterLink>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="flex justify-center md:justify-end"
+            >
+              <div className="relative w-full max-w-xl md:max-w-2xl lg:max-w-3xl h-[360px] md:h-[500px] lg:h-[900px]">
+                <Orb hoverIntensity={0.4} rotateOnHover={true} forceHoverState={false} />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 

@@ -91,10 +91,10 @@ export default function Contact() {
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-1">Email</h3>
                   <a
-                    href="mailto:info@meshplatform.io"
+                    href="mailto:thabheloduve@gmail.com"
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    info@meshplatform.io
+                    thabheloduve@gmail.com
                   </a>
                   <p className="text-muted-foreground text-sm mt-1">We respond within 24 hours</p>
                 </div>
@@ -107,10 +107,10 @@ export default function Contact() {
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-1">Phone</h3>
                   <a
-                    href="tel:+1205555100"
+                    href="tel:+12563754207"
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    (205) 555-0100
+                    2563754207
                   </a>
                   <p className="text-muted-foreground text-sm mt-1">Available Monday-Friday, 8am-6pm CST</p>
                 </div>
