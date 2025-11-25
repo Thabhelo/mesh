@@ -4,13 +4,6 @@ import { ArrowRight, Users, Target, Heart, Zap } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
 
 export default function About() {
-  const team = [
-    { role: 'AI/ML Engineer', desc: 'Builds surge prediction and hazard analysis models' },
-    { role: 'Backend Integrations Engineer', desc: 'Manages CAD, EPCR, EHR, and API connectors' },
-    { role: 'Frontend Developer', desc: 'Creates dashboard and portal interfaces' },
-    { role: 'Public Safety Liaison', desc: 'Former dispatcher, EMS leader, or fire officer' },
-  ];
-
   const timeline = [
     { phase: 'Phase 1', title: 'Foundation', items: ['Core platform development', 'Initial agency partnerships', 'Pilot deployment planning'] },
     { phase: 'Phase 2', title: 'Integration', items: ['CAD system connections', 'Data normalization', 'Dashboard launch'] },
@@ -187,60 +180,6 @@ export default function About() {
             ))}
           </motion.div>
         </div>
-      </section>
-
-      <section className="container py-24">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-12"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Our Team</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl">
-            Mesh combines expertise in emergency services, software engineering, and AI to solve the hardest problem in public safety: real-time coordination.
-          </p>
-        </motion.div>
-
-        <motion.div
-          className="grid md:grid-cols-2 gap-8 mb-12"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-        >
-          {team.map((member, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="p-8 rounded-lg border border-border hover:border-primary/60 transition-colors bg-card shadow-card"
-            >
-              <h3 className="text-lg font-semibold text-foreground mb-2">{member.role}</h3>
-              <p className="text-muted-foreground">{member.desc}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="p-8 rounded-lg bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/30 shadow-card"
-        >
-          <h3 className="text-xl font-semibold text-foreground mb-3">We're Hiring</h3>
-          <p className="text-muted-foreground mb-4">
-            Join us in transforming public safety. We're looking for passionate engineers, product leaders, and community advocates who believe in the power of unified systems to save lives.
-          </p>
-          <a
-            href="mailto:careers@meshplatform.io"
-            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium"
-          >
-            See Open Positions
-            <ArrowRight size={18} />
-          </a>
-        </motion.div>
       </section>
 
       <section className="bg-gradient-to-b from-background to-secondary/15 py-24">

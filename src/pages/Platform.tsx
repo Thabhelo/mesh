@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
 import { ArrowRight, Database, Cpu, BarChart3, Zap, Shield, Clock } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
-import { ProductNetworkDiagram } from '../components/ProductNetworkDiagram';
 
 export default function Platform() {
   const features = [
@@ -76,9 +75,9 @@ export default function Platform() {
 
   return (
     <PageLayout>
-      {/* Product hero with animated network diagram */}
+      {/* Product hero */}
       <section className="bg-background py-20 md:py-24">
-        <div className="container grid gap-16 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] items-center">
+        <div className="container max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -116,8 +115,6 @@ export default function Platform() {
               </RouterLink>
             </div>
           </motion.div>
-
-          <ProductNetworkDiagram />
         </div>
       </section>
 
