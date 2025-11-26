@@ -105,14 +105,27 @@ export default function Home() {
                 >
                   Learn More
                 </RouterLink>
-                <a
-                  href="https://github.com/Thabhelo/mesh-macos/releases/download/v1.0.0/Mesh-v1.0.0.dmg"
-                  download
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-primary/60 text-foreground rounded-lg font-semibold transition-all hover:bg-primary/10 hover:border-primary"
-                >
-                  Download for Mac
-                  <Download size={18} />
-                </a>
+                <div className="relative group/download">
+                  <a
+                    href="https://github.com/Thabhelo/mesh-macos/releases/download/v1.0.0/Mesh-v1.0.0.dmg"
+                    download
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-primary/60 text-foreground rounded-lg font-semibold transition-all hover:bg-primary/10 hover:border-primary"
+                  >
+                    Download for Mac
+                    <Download size={18} />
+                  </a>
+                  <div className="absolute left-0 top-full mt-2 w-80 p-4 bg-card/95 backdrop-blur-xl border border-border rounded-lg shadow-xl opacity-0 invisible group-hover/download:opacity-100 group-hover/download:visible transition-all duration-200 z-50">
+                    <p className="text-sm font-semibold text-foreground mb-2">Installation Steps</p>
+                    <ol className="text-xs text-muted-foreground space-y-1 list-decimal list-inside">
+                      <li>Open the downloaded DMG file</li>
+                      <li>Drag Mesh.app to Applications</li>
+                      <li>Open the app (it will be blocked initially)</li>
+                      <li>Go to System Settings &gt; Privacy &amp; Security</li>
+                      <li>Click "Open Anyway" next to the Mesh message</li>
+                    </ol>
+                    <p className="text-xs text-muted-foreground mt-2 pt-2 border-t border-border">Requires macOS 14.0 or later</p>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
