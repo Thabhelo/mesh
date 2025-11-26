@@ -1,5 +1,14 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import { 
+  getAuth, 
+  GoogleAuthProvider, 
+  GithubAuthProvider,
+  signInWithPopup,
+  signOut as firebaseSignOut,
+  onAuthStateChanged,
+  User
+} from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -12,4 +21,16 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
+
+// Auth
+export const auth = getAuth(app);
+export const googleProvider = new GoogleAuthProvider();
+export const githubProvider = new GithubAuthProvider();
+
+// Auth helpers
+export const signInWithGoogle = () => signInWithPopup(auth, googleProvider);
+export const signInWithGithub = () => signInWithPopup(auth, githubProvider);
+export const signOut = () => firebaseSignOut(auth);
+export { onAuthStateChanged };
+export type { User };
 

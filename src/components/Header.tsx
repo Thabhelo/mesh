@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, LogIn } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useAuth } from '../providers/auth';
+import UserMenu from './UserMenu';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, loading } = useAuth();
 
   const navLinks = [
     { label: 'Home', href: '/' },
@@ -41,13 +44,30 @@ export default function Header() {
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-4">
-            <RouterLink
-              to="/platform"
-              className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full transition-colors text-sm font-medium shadow-[0_10px_30px_rgba(249,115,22,0.45)]"
-            >
-              Get Started
-            </RouterLink>
+          <div className="hidden md:flex items-center gap-3">
+            {loading ? (
+              <div className="w-8 h-8 flex items-center justify-center">
+                <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+              </div>
+            ) : user ? (
+              <UserMenu />
+            ) : (
+              <>
+                <RouterLink
+                  to="/signin"
+                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors"
+                >
+                  <LogIn size={16} />
+                  <span>Sign In</span>
+                </RouterLink>
+                <RouterLink
+                  to="/platform"
+                  className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full transition-colors text-sm font-medium shadow-[0_10px_30px_rgba(249,115,22,0.45)]"
+                >
+                  Get Started
+                </RouterLink>
+              </>
+            )}
           </div>
 
           <button
@@ -78,13 +98,34 @@ export default function Header() {
                   {link.label}
                 </RouterLink>
               ))}
-              <RouterLink
-                to="/platform"
-                onClick={() => setIsOpen(false)}
-                className="w-full px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors text-center font-medium"
-              >
-                Get Started
-              </RouterLink>
+              
+              {loading ? (
+                <div className="flex items-center justify-center py-2">
+                  <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+                </div>
+              ) : user ? (
+                <div className="py-2">
+                  <UserMenu />
+                </div>
+              ) : (
+                <>
+                  <RouterLink
+                    to="/signin"
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors py-2"
+                  >
+                    <LogIn size={16} />
+                    <span>Sign In</span>
+                  </RouterLink>
+                  <RouterLink
+                    to="/platform"
+                    onClick={() => setIsOpen(false)}
+                    className="w-full px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors text-center font-medium"
+                  >
+                    Get Started
+                  </RouterLink>
+                </>
+              )}
             </div>
           </motion.div>
         )}
