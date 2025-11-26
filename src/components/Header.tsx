@@ -3,11 +3,18 @@ import { Link as RouterLink } from 'react-router-dom';
 import { Menu, X, LogIn } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../providers/auth';
+import { getDepartmentInfo } from '../types/user';
 import UserMenu from './UserMenu';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, loading } = useAuth();
+  const { user, profile, loading } = useAuth();
+  
+  const getDashboardPath = () => {
+    if (!profile?.department) return '/onboarding';
+    const dept = getDepartmentInfo(profile.department);
+    return dept?.dashboardPath || '/dashboard/ems';
+  };
 
   const navLinks = [
     { label: 'Home', href: '/' },
@@ -52,7 +59,7 @@ export default function Header() {
             ) : user ? (
               <>
                 <RouterLink
-                  to="/dashboard/ems"
+                  to={getDashboardPath()}
                   className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full transition-colors text-sm font-medium shadow-[0_10px_30px_rgba(249,115,22,0.45)]"
                 >
                   Dashboard
@@ -114,7 +121,7 @@ export default function Header() {
               ) : user ? (
                 <>
                   <RouterLink
-                    to="/dashboard/ems"
+                    to={getDashboardPath()}
                     onClick={() => setIsOpen(false)}
                     className="w-full px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors text-center font-medium"
                   >

@@ -8,19 +8,17 @@ import Terms from './pages/Terms';
 import SignIn from './pages/SignIn';
 import Onboarding from './pages/Onboarding';
 
-// EMS Dashboard Pages
+// Dashboard Pages
+import FireDashboard from './pages/dashboard/FireDashboard';
+import PoliceDashboard from './pages/dashboard/PoliceDashboard';
 import EMSDashboard from './pages/dashboard/EMSDashboard';
-import EMSCalls from './pages/dashboard/EMSCalls';
-import EMSAnalytics from './pages/dashboard/EMSAnalytics';
-import EMSMessages from './pages/dashboard/EMSMessages';
-import EMSHospitals from './pages/dashboard/EMSHospitals';
-import EMSUnits from './pages/dashboard/EMSUnits';
+import DispatchDashboard from './pages/dashboard/DispatchDashboard';
+import AdminDashboard from './pages/dashboard/AdminDashboard';
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Marketing Pages */}
         <Route path="/" element={<Home />} />
         <Route path="/platform" element={<Platform />} />
         <Route path="/about" element={<About />} />
@@ -30,13 +28,11 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/onboarding" element={<Onboarding />} />
 
-        {/* EMS Dashboard */}
+        <Route path="/dashboard/fire" element={<FireDashboard />} />
+        <Route path="/dashboard/police" element={<PoliceDashboard />} />
         <Route path="/dashboard/ems" element={<EMSDashboard />} />
-        <Route path="/dashboard/ems/calls" element={<EMSCalls />} />
-        <Route path="/dashboard/ems/analytics" element={<EMSAnalytics />} />
-        <Route path="/dashboard/ems/messages" element={<EMSMessages />} />
-        <Route path="/dashboard/ems/hospitals" element={<EMSHospitals />} />
-        <Route path="/dashboard/ems/units" element={<EMSUnits />} />
+        <Route path="/dashboard/dispatch" element={<DispatchDashboard />} />
+        <Route path="/dashboard/admin" element={<AdminDashboard />} />
       </Routes>
     </Router>
   );

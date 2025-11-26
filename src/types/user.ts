@@ -2,10 +2,7 @@ export type Department =
   | 'fire'
   | 'police'
   | 'ems'
-  | 'hospital'
-  | 'transit'
   | 'dispatch'
-  | 'emergency_management'
   | 'administration';
 
 export interface DepartmentInfo {
@@ -13,56 +10,44 @@ export interface DepartmentInfo {
   label: string;
   description: string;
   color: string;
+  dashboardPath: string;
 }
 
 export const DEPARTMENTS: DepartmentInfo[] = [
   {
     id: 'fire',
     label: 'Fire Department',
-    description: 'Fire suppression, rescue, and prevention services',
+    description: 'Fire suppression, rescue operations, and hazmat response',
     color: '#DC2626',
+    dashboardPath: '/dashboard/fire',
   },
   {
     id: 'police',
     label: 'Police Department',
     description: 'Law enforcement and public safety',
     color: '#2563EB',
+    dashboardPath: '/dashboard/police',
   },
   {
     id: 'ems',
     label: 'EMS / Paramedics',
-    description: 'Emergency medical services and ambulance',
+    description: 'Emergency medical services and patient transport',
     color: '#059669',
-  },
-  {
-    id: 'hospital',
-    label: 'Hospital / Healthcare',
-    description: 'Emergency rooms and healthcare facilities',
-    color: '#7C3AED',
-  },
-  {
-    id: 'transit',
-    label: 'Transit Authority',
-    description: 'Public transportation and mobility services',
-    color: '#0891B2',
+    dashboardPath: '/dashboard/ems',
   },
   {
     id: 'dispatch',
-    label: '911 / Dispatch Center',
-    description: 'Emergency call centers and dispatch operations',
+    label: '911 Dispatch Center',
+    description: 'Emergency call handling and multi-agency coordination',
     color: '#CA8A04',
-  },
-  {
-    id: 'emergency_management',
-    label: 'Emergency Management',
-    description: 'Disaster preparedness and response coordination',
-    color: '#EA580C',
+    dashboardPath: '/dashboard/dispatch',
   },
   {
     id: 'administration',
     label: 'City / County Administration',
-    description: 'Government oversight and policy coordination',
+    description: 'Government oversight, policy, and resource allocation',
     color: '#64748B',
+    dashboardPath: '/dashboard/admin',
   },
 ];
 
@@ -80,4 +65,3 @@ export function getDepartmentInfo(departmentId: Department | null): DepartmentIn
   if (!departmentId) return null;
   return DEPARTMENTS.find((d) => d.id === departmentId) || null;
 }
-

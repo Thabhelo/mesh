@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Check, ArrowRight, Loader2, AlertCircle } from 'lucide-react';
 import { useAuth } from '../providers/auth';
-import { DEPARTMENTS, Department } from '../types/user';
+import { DEPARTMENTS, Department, getDepartmentInfo } from '../types/user';
 import { updateUserDepartment, createUserProfile } from '../lib/userService';
 import PageLayout from '../components/PageLayout';
 
@@ -46,8 +46,10 @@ export default function Onboarding() {
       
       await updateUserDepartment(user.uid, selectedDepartment);
       await refreshProfile();
-      // Redirect to dashboard after onboarding
-      navigate('/dashboard/ems', { replace: true });
+      
+      // Redirect to the appropriate dashboard
+      const dept = getDepartmentInfo(selectedDepartment);
+      navigate(dept?.dashboardPath || '/dashboard/ems', { replace: true });
     } catch (err) {
       console.error('Failed to save department:', err);
       setError('Failed to save your selection. Please check your connection and try again.');

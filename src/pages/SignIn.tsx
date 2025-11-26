@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../providers/auth';
+import { getDepartmentInfo } from '../types/user';
 import PageLayout from '../components/PageLayout';
 
 const GoogleIcon = () => (
@@ -46,9 +47,10 @@ export default function SignIn() {
       // Wait for profile to finish loading before deciding where to go
       if (profileLoading) return;
       
-      // If profile exists and has department, go to dashboard. Otherwise, onboarding.
+      // If profile exists and has department, go to their dashboard. Otherwise, onboarding.
       if (profile?.department) {
-        navigate('/dashboard/ems', { replace: true });
+        const dept = getDepartmentInfo(profile.department);
+        navigate(dept?.dashboardPath || '/dashboard/ems', { replace: true });
       } else {
         navigate('/onboarding', { replace: true });
       }

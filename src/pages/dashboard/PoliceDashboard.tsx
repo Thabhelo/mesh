@@ -1,10 +1,15 @@
 import { motion } from 'framer-motion';
-import { Ambulance, Building2, MapPin, Clock, Activity } from 'lucide-react';
+import { Shield, Car, MapPin, Clock, User } from 'lucide-react';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
-import { MOCK_EMS_CALLS, MOCK_HOSPITALS, Incident, Hospital } from '../../types/dashboard';
+import { MOCK_POLICE_CALLS, MOCK_POLICE_UNITS, Incident, Unit } from '../../types/dashboard';
 
 function CallCard({ call, index }: { call: Incident; index: number }) {
   const minutesAgo = Math.floor((Date.now() - call.dispatchTime.getTime()) / 60000);
+  const priorityColors = {
+    1: 'bg-destructive/10 text-destructive',
+    2: 'bg-secondary/10 text-secondary',
+    3: 'bg-muted text-muted-foreground',
+  };
 
   return (
     <motion.div
@@ -17,9 +22,7 @@ function CallCard({ call, index }: { call: Incident; index: number }) {
     >
       <div className="flex items-center justify-between mb-3">
         <span className="text-xs font-mono text-muted-foreground">{call.id}</span>
-        <span className={`px-2 py-0.5 text-xs font-medium rounded ${
-          call.priority === 1 ? 'bg-destructive/10 text-destructive' : 'bg-secondary/10 text-secondary'
-        }`}>
+        <span className={`px-2 py-0.5 text-xs font-medium rounded ${priorityColors[call.priority]}`}>
           P{call.priority}
         </span>
       </div>
@@ -40,11 +43,13 @@ function CallCard({ call, index }: { call: Incident; index: number }) {
   );
 }
 
-function HospitalRow({ hospital, index }: { hospital: Hospital; index: number }) {
-  const statusColors = {
-    open: 'bg-primary',
-    busy: 'bg-secondary',
-    divert: 'bg-destructive',
+function UnitRow({ unit, index }: { unit: Unit; index: number }) {
+  const statusColors: Record<string, string> = {
+    available: 'bg-primary',
+    responding: 'bg-secondary',
+    on_scene: 'bg-destructive',
+    busy: 'bg-muted-foreground',
+    offline: 'bg-muted-foreground/50',
   };
 
   return (
@@ -52,45 +57,34 @@ function HospitalRow({ hospital, index }: { hospital: Hospital; index: number })
       initial={{ opacity: 0, x: -10 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: index * 0.03 }}
-      className="p-3 bg-card rounded-xl border border-border"
+      className="flex items-center gap-4 p-3 bg-card rounded-xl border border-border"
     >
-      <div className="flex items-center justify-between mb-2">
-        <span className="font-medium text-foreground">{hospital.name}</span>
-        <span className={`w-2 h-2 rounded-full ${statusColors[hospital.status]}`} />
-      </div>
-      <div className="flex items-center justify-between text-sm text-muted-foreground">
-        <span>{hospital.eta} min</span>
-        <div className="flex items-center gap-2">
-          <div className="w-16 h-1.5 bg-muted rounded-full overflow-hidden">
-            <div
-              className={`h-full rounded-full ${hospital.capacity > 80 ? 'bg-destructive' : 'bg-primary'}`}
-              style={{ width: `${hospital.capacity}%` }}
-            />
-          </div>
-          <span className="text-xs">{hospital.capacity}%</span>
-        </div>
-      </div>
+      <div className={`w-2 h-2 rounded-full ${statusColors[unit.status]}`} />
+      <span className="font-mono font-semibold text-foreground w-12">{unit.callSign}</span>
+      <span className="text-sm text-foreground flex-1">{unit.officer}</span>
+      <span className="text-sm text-muted-foreground capitalize">{unit.status.replace('_', ' ')}</span>
     </motion.div>
   );
 }
 
-export default function EMSDashboard() {
-  const openHospitals = MOCK_HOSPITALS.filter(h => h.status === 'open').length;
+export default function PoliceDashboard() {
+  const availableCount = MOCK_POLICE_UNITS.filter(u => u.status === 'available').length;
+  const activeCount = MOCK_POLICE_UNITS.filter(u => u.status === 'on_scene' || u.status === 'responding').length;
 
   return (
     <DashboardLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">EMS Operations</h1>
-          <p className="text-muted-foreground text-sm">Active calls and hospital status</p>
+          <h1 className="text-2xl font-bold text-foreground">Police Operations</h1>
+          <p className="text-muted-foreground text-sm">Active calls and unit deployment</p>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { label: 'Active Calls', value: MOCK_EMS_CALLS.length, icon: Activity },
-            { label: 'Units Active', value: 2, icon: Ambulance },
-            { label: 'Hospitals Open', value: openHospitals, icon: Building2 },
-            { label: 'Avg Response', value: '5.4m', icon: Clock },
+            { label: 'Active Calls', value: MOCK_POLICE_CALLS.length, icon: Shield },
+            { label: 'Units Deployed', value: activeCount, icon: Car },
+            { label: 'Available', value: availableCount, icon: Car },
+            { label: 'Total Officers', value: MOCK_POLICE_UNITS.length, icon: User },
           ].map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -114,7 +108,7 @@ export default function EMSDashboard() {
               Active Calls
             </h2>
             <div className="space-y-3">
-              {MOCK_EMS_CALLS.map((call, i) => (
+              {MOCK_POLICE_CALLS.map((call, i) => (
                 <CallCard key={call.id} call={call} index={i} />
               ))}
             </div>
@@ -122,11 +116,11 @@ export default function EMSDashboard() {
 
           <div>
             <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-              Hospital Status
+              Unit Status
             </h2>
             <div className="space-y-2">
-              {MOCK_HOSPITALS.map((hospital, i) => (
-                <HospitalRow key={hospital.id} hospital={hospital} index={i} />
+              {MOCK_POLICE_UNITS.map((unit, i) => (
+                <UnitRow key={unit.id} unit={unit} index={i} />
               ))}
             </div>
           </div>

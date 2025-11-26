@@ -35,9 +35,8 @@ export default function UserMenu() {
   // Get dashboard path based on department
   const getDashboardPath = () => {
     if (!profile?.department) return '/onboarding';
-    // For now, all departments go to EMS dashboard as a demo
-    // In production, each department would have its own dashboard
-    return '/dashboard/ems';
+    const dept = getDepartmentInfo(profile.department);
+    return dept?.dashboardPath || '/dashboard/ems';
   };
 
   return (
