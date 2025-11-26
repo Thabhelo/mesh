@@ -121,6 +121,7 @@ export default function Home() {
                       <li>Drag Mesh.app to Applications</li>
                       <li>Open the app (it will be blocked initially)</li>
                       <li>Go to System Settings &gt; Privacy &amp; Security</li>
+                      <li>Scroll down a bit and Find "Mesh" in the list of apps</li>
                       <li>Click "Open Anyway" next to the Mesh message</li>
                     </ol>
                     <p className="text-xs text-muted-foreground mt-2 pt-2 border-t border-border">Requires macOS 14.0 or later</p>
