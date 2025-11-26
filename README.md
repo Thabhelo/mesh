@@ -39,30 +39,6 @@ src/
 └── index.css                Global styles and design tokens
 ```
 
-## Key Pages
-
-### Home
-
-- Hero section with large orbital background and clear value proposition
-- "Birmingham by the Numbers" market statistics
-- Challenge framing and Mesh Insight Engine overview
-- Ethics and privacy section that explains what Mesh does not do
-
-### Platform
-
-- Three core pillars of the Mesh platform
-- "How it works" flow for connecting, normalizing, analyzing, and responding
-- Integration capabilities across CAD, EPCR, EHR, transit, and other systems
-- Key capabilities such as surge prediction, hazard analysis, and privacy first architecture
-
-### About
-
-- Story behind Mesh and why Birmingham is the starting point
-- Mission, vision, values, and focus
-- Team section for the founding group
-- Roadmap for how the platform can scale over time
-
-
 ### Installation
 
 1. Install dependencies
