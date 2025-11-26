@@ -6,12 +6,19 @@ import Footer from './Footer';
 interface PageLayoutProps {
   children: ReactNode;
   title?: string;
+  showHeader?: boolean;
+  showFooter?: boolean;
 }
 
-export default function PageLayout({ children, title }: PageLayoutProps) {
+export default function PageLayout({ 
+  children, 
+  title, 
+  showHeader = true, 
+  showFooter = true 
+}: PageLayoutProps) {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Header />
+      {showHeader && <Header />}
       <motion.main
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -26,7 +33,7 @@ export default function PageLayout({ children, title }: PageLayoutProps) {
         )}
         {children}
       </motion.main>
-      <Footer />
+      {showFooter && <Footer />}
     </div>
   );
 }

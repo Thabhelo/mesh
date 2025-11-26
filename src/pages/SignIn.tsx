@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { useAuth } from '../providers/auth';
 import PageLayout from '../components/PageLayout';
 
-// Custom SVG icons for OAuth providers
 const GoogleIcon = () => (
   <svg viewBox="0 0 24 24" className="w-5 h-5" aria-hidden="true">
     <path
@@ -33,16 +32,28 @@ const GithubIcon = () => (
 );
 
 export default function SignIn() {
-  const { user, loading, signInWithGoogle, signInWithGithub } = useAuth();
+  const { user, profile, loading, profileLoading, signInWithGoogle, signInWithGithub } = useAuth();
   const navigate = useNavigate();
   const [isSigningIn, setIsSigningIn] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (user && !loading) {
-      navigate('/');
+    // Wait for auth to finish loading
+    if (loading) return;
+    
+    // If user is authenticated, redirect appropriately
+    if (user) {
+      // Wait for profile to finish loading before deciding where to go
+      if (profileLoading) return;
+      
+      // If profile exists and has department, go home. Otherwise, onboarding.
+      if (profile?.department) {
+        navigate('/', { replace: true });
+      } else {
+        navigate('/onboarding', { replace: true });
+      }
     }
-  }, [user, loading, navigate]);
+  }, [user, profile, loading, profileLoading, navigate]);
 
   const handleGoogleSignIn = async () => {
     setIsSigningIn(true);

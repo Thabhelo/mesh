@@ -6,6 +6,7 @@ import Contact from './pages/Contact';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import SignIn from './pages/SignIn';
+import Onboarding from './pages/Onboarding';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/onboarding" element={<Onboarding />} />
       </Routes>
     </Router>
   );

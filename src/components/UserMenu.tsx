@@ -1,15 +1,15 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LogOut, User as UserIcon, ChevronDown } from 'lucide-react';
+import { LogOut, User as UserIcon, ChevronDown, Settings } from 'lucide-react';
 import { useAuth } from '../providers/auth';
+import { getDepartmentInfo } from '../types/user';
 
 export default function UserMenu() {
-  const { user, signOut } = useAuth();
+  const { user, profile, signOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -30,6 +30,7 @@ export default function UserMenu() {
 
   const displayName = user.displayName || user.email?.split('@')[0] || 'User';
   const photoURL = user.photoURL;
+  const departmentInfo = getDepartmentInfo(profile?.department || null);
 
   return (
     <div className="relative" ref={menuRef}>
@@ -37,7 +38,6 @@ export default function UserMenu() {
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-border/50 hover:border-primary/30 bg-background/50 hover:bg-background/80 transition-all duration-200 group"
       >
-        {/* Avatar */}
         {photoURL ? (
           <img
             src={photoURL}
@@ -50,7 +50,6 @@ export default function UserMenu() {
           </div>
         )}
         
-        {/* Name (hidden on mobile) */}
         <span className="hidden sm:block text-sm font-medium text-foreground max-w-[100px] truncate">
           {displayName}
         </span>
@@ -68,29 +67,37 @@ export default function UserMenu() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.96 }}
             transition={{ duration: 0.15 }}
-            className="absolute right-0 mt-2 w-56 py-2 bg-card/95 backdrop-blur-xl border border-border rounded-xl shadow-lg overflow-hidden z-50"
+            className="absolute right-0 mt-2 w-64 py-2 bg-card/95 backdrop-blur-xl border border-border rounded-xl shadow-lg overflow-hidden z-50"
           >
-            {/* User Info */}
             <div className="px-4 py-3 border-b border-border/50">
               <p className="text-sm font-medium text-foreground truncate">{displayName}</p>
               {user.email && (
-                <p className="text-xs text-muted-foreground truncate">{user.email}</p>
+                <p className="text-xs text-muted-foreground truncate mt-0.5">{user.email}</p>
+              )}
+              {departmentInfo && (
+                <div className="flex items-center gap-2 mt-2">
+                  <div
+                    className="w-2 h-2 rounded-full flex-shrink-0"
+                    style={{ backgroundColor: departmentInfo.color }}
+                  />
+                  <span className="text-xs font-medium text-muted-foreground">
+                    {departmentInfo.label}
+                  </span>
+                </div>
               )}
             </div>
 
-            {/* Menu Items */}
             <div className="py-2">
               <Link
-                to="/dashboard"
+                to="/onboarding"
                 onClick={() => setIsOpen(false)}
                 className="flex items-center gap-3 px-4 py-2 text-sm text-foreground hover:bg-accent/50 transition-colors"
               >
-                <UserIcon size={16} className="text-muted-foreground" />
-                <span>Dashboard</span>
+                <Settings size={16} className="text-muted-foreground" />
+                <span>Change Department</span>
               </Link>
             </div>
 
-            {/* Sign Out */}
             <div className="border-t border-border/50 pt-2">
               <button
                 onClick={handleSignOut}
