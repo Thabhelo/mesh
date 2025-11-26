@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
-import { ArrowRight, Zap, TrendingUp, AlertTriangle, Users } from 'lucide-react';
+import { ArrowRight, Download, Zap, TrendingUp, AlertTriangle, Users } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
 import Orb from '../components/Orb';
 
@@ -105,6 +105,13 @@ export default function Home() {
                 >
                   Learn More
                 </RouterLink>
+                <a
+                  href="#"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-primary/60 text-foreground rounded-lg font-semibold transition-all hover:bg-primary/10 hover:border-primary"
+                >
+                  Download for Mac
+                  <Download size={18} />
+                </a>
               </div>
             </motion.div>
 
