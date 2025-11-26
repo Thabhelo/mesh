@@ -106,7 +106,9 @@ export default function Home() {
                   Learn More
                 </RouterLink>
                 <a
-                  href="#"
+                  href="https://github.com/Thabhelo/mesh-macos/releases/tag/v1.0.0"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-primary/60 text-foreground rounded-lg font-semibold transition-all hover:bg-primary/10 hover:border-primary"
                 >
                   Download for Mac
