@@ -46,9 +46,9 @@ export default function SignIn() {
       // Wait for profile to finish loading before deciding where to go
       if (profileLoading) return;
       
-      // If profile exists and has department, go home. Otherwise, onboarding.
+      // If profile exists and has department, go to dashboard. Otherwise, onboarding.
       if (profile?.department) {
-        navigate('/', { replace: true });
+        navigate('/dashboard/ems', { replace: true });
       } else {
         navigate('/onboarding', { replace: true });
       }

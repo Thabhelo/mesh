@@ -46,7 +46,8 @@ export default function Onboarding() {
       
       await updateUserDepartment(user.uid, selectedDepartment);
       await refreshProfile();
-      navigate('/', { replace: true });
+      // Redirect to dashboard after onboarding
+      navigate('/dashboard/ems', { replace: true });
     } catch (err) {
       console.error('Failed to save department:', err);
       setError('Failed to save your selection. Please check your connection and try again.');

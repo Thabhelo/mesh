@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LogOut, User as UserIcon, ChevronDown, Settings } from 'lucide-react';
+import { LogOut, User as UserIcon, ChevronDown, Settings, LayoutDashboard } from 'lucide-react';
 import { useAuth } from '../providers/auth';
 import { getDepartmentInfo } from '../types/user';
 
@@ -31,6 +31,14 @@ export default function UserMenu() {
   const displayName = user.displayName || user.email?.split('@')[0] || 'User';
   const photoURL = user.photoURL;
   const departmentInfo = getDepartmentInfo(profile?.department || null);
+  
+  // Get dashboard path based on department
+  const getDashboardPath = () => {
+    if (!profile?.department) return '/onboarding';
+    // For now, all departments go to EMS dashboard as a demo
+    // In production, each department would have its own dashboard
+    return '/dashboard/ems';
+  };
 
   return (
     <div className="relative" ref={menuRef}>
@@ -88,6 +96,14 @@ export default function UserMenu() {
             </div>
 
             <div className="py-2">
+              <Link
+                to={getDashboardPath()}
+                onClick={() => setIsOpen(false)}
+                className="flex items-center gap-3 px-4 py-2 text-sm text-foreground hover:bg-accent/50 transition-colors"
+              >
+                <LayoutDashboard size={16} className="text-muted-foreground" />
+                <span>Dashboard</span>
+              </Link>
               <Link
                 to="/onboarding"
                 onClick={() => setIsOpen(false)}
