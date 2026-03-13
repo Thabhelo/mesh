@@ -11,34 +11,6 @@ This repository contains the marketing and product explainer site for Mesh. It h
 - A privacy first, community focused approach to public safety technology
 - Clear calls to action for agencies and partners who want to learn more
 
-## Project Structure
-
-```text
-src/
-├── components/              Reusable UI pieces
-│   ├── Header.tsx           Sticky glassmorphic navigation
-│   ├── Footer.tsx           Footer with navigation and contact links
-│   ├── PageLayout.tsx       Shared shell used by all pages
-│   ├── Orb.tsx              Shader based orbital background
-│   ├── NeonNetworkCanvas.tsx Network visualization on the platform page
-│   ├── Section.tsx          Section utility and titles
-│   └── FeatureCard.tsx      Generic card styling
-├── pages/                   Top level routes
-│   ├── Home.tsx             Landing page and hero
-│   ├── Platform.tsx         Platform capabilities and integrations
-│   ├── About.tsx            Team and mission
-│   ├── Contact.tsx          Contact form and FAQ
-│   ├── Privacy.tsx          Privacy Policy
-│   └── Terms.tsx            Terms of Service
-├── lib/
-│   └── firebase.ts          Firebase and Firestore setup
-├── providers/
-│   └── app.tsx              App level providers
-├── App.tsx                  Router configuration
-├── main.tsx                 React entry point
-└── index.css                Global styles and design tokens
-```
-
 ### Installation
 
 1. Install dependencies
