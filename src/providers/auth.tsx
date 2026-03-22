@@ -1,14 +1,21 @@
-import { createContext, useContext, useEffect, useState, ReactNode, useCallback } from 'react';
-import { 
-  auth, 
-  onAuthStateChanged, 
-  signInWithGoogle, 
-  signInWithGithub, 
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+  useCallback,
+} from "react";
+import {
+  auth,
+  onAuthStateChanged,
+  signInWithGoogle,
+  signInWithGithub,
   signOut,
-  User 
-} from '../lib/firebase';
-import { UserProfile } from '../types/user';
-import { getOrCreateUserProfile, getUserProfile } from '../lib/userService';
+  User,
+} from "../lib/firebase";
+import { UserProfile } from "../types/user";
+import { getOrCreateUserProfile, getUserProfile } from "../lib/userService";
 
 interface AuthContextType {
   user: User | null;
@@ -27,7 +34,7 @@ const AuthContext = createContext<AuthContextType | null>(null);
 export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 }
@@ -50,8 +57,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const userProfile = await getOrCreateUserProfile(firebaseUser);
       setProfile(userProfile);
     } catch (error) {
-      console.error('Failed to load user profile:', error);
-      setProfileError('Failed to load profile. Check Firestore rules.');
+      console.error("Failed to load user profile:", error);
+      setProfileError("Failed to load profile. Check Firestore rules.");
       setProfile(null);
     } finally {
       setProfileLoading(false);
@@ -66,14 +73,21 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const userProfile = await getUserProfile(user.uid);
       setProfile(userProfile);
     } catch (error) {
-      console.error('Failed to refresh profile:', error);
-      setProfileError('Failed to refresh profile.');
+      console.error("Failed to refresh profile:", error);
+      setProfileError("Failed to refresh profile.");
     } finally {
       setProfileLoading(false);
     }
   }, [user]);
 
   useEffect(() => {
+    if (!auth) {
+      setLoading(false);
+      setUser(null);
+      setProfile(null);
+      return;
+    }
+
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
         setUser(firebaseUser);
@@ -92,7 +106,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     try {
       await signInWithGoogle();
     } catch (error) {
-      console.error('Google sign-in error:', error);
+      console.error("Google sign-in error:", error);
       throw error;
     }
   };
@@ -101,7 +115,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     try {
       await signInWithGithub();
     } catch (error) {
-      console.error('GitHub sign-in error:', error);
+      console.error("GitHub sign-in error:", error);
       throw error;
     }
   };
@@ -112,7 +126,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setProfile(null);
       setProfileError(null);
     } catch (error) {
-      console.error('Sign-out error:', error);
+      console.error("Sign-out error:", error);
       throw error;
     }
   };
@@ -129,10 +143,5 @@ export function AuthProvider({ children }: AuthProviderProps) {
     refreshProfile,
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
-

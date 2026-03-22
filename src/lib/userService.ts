@@ -1,11 +1,19 @@
-import { doc, getDoc, setDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
-import { db } from './firebase';
-import { User } from 'firebase/auth';
-import { UserProfile, Department } from '../types/user';
+import {
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  serverTimestamp,
+} from "firebase/firestore";
+import { db } from "./firebase";
+import { User } from "firebase/auth";
+import { UserProfile, Department } from "../types/user";
 
-const USERS_COLLECTION = 'users';
+const USERS_COLLECTION = "users";
 
 export async function getUserProfile(uid: string): Promise<UserProfile | null> {
+  if (!db) return null;
+
   try {
     const userRef = doc(db, USERS_COLLECTION, uid);
     const userSnap = await getDoc(userRef);
@@ -25,15 +33,21 @@ export async function getUserProfile(uid: string): Promise<UserProfile | null> {
 
     return null;
   } catch (error) {
-    console.error('Error fetching user profile:', error);
+    console.error("Error fetching user profile:", error);
     return null;
   }
 }
 
 export async function createUserProfile(user: User): Promise<UserProfile> {
+  if (!db) {
+    throw new Error(
+      "Firestore is not configured. Add VITE_FIREBASE_* variables to .env.",
+    );
+  }
+
   const userRef = doc(db, USERS_COLLECTION, user.uid);
 
-  const profile: Omit<UserProfile, 'createdAt' | 'updatedAt'> & {
+  const profile: Omit<UserProfile, "createdAt" | "updatedAt"> & {
     createdAt: ReturnType<typeof serverTimestamp>;
     updatedAt: ReturnType<typeof serverTimestamp>;
   } = {
@@ -57,8 +71,14 @@ export async function createUserProfile(user: User): Promise<UserProfile> {
 
 export async function updateUserDepartment(
   uid: string,
-  department: Department
+  department: Department,
 ): Promise<void> {
+  if (!db) {
+    throw new Error(
+      "Firestore is not configured. Add VITE_FIREBASE_* variables to .env.",
+    );
+  }
+
   const userRef = doc(db, USERS_COLLECTION, uid);
 
   await updateDoc(userRef, {
@@ -76,4 +96,3 @@ export async function getOrCreateUserProfile(user: User): Promise<UserProfile> {
 
   return createUserProfile(user);
 }
-
