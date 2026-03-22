@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { Renderer, Program, Mesh, Triangle, Vec3 } from 'ogl';
+import { useEffect, useRef } from "react";
+import { Renderer, Program, Mesh, Triangle, Vec3 } from "ogl";
 
 interface OrbProps {
   hue?: number;
@@ -194,7 +194,7 @@ export default function Orb({
           value: new Vec3(
             gl.canvas.width,
             gl.canvas.height,
-            gl.canvas.width / gl.canvas.height
+            gl.canvas.width / gl.canvas.height,
           ),
         },
         hue: { value: hue },
@@ -218,10 +218,10 @@ export default function Orb({
       program.uniforms.iResolution.value.set(
         gl.canvas.width,
         gl.canvas.height,
-        gl.canvas.width / gl.canvas.height
+        gl.canvas.width / gl.canvas.height,
       );
     }
-    window.addEventListener('resize', resize);
+    window.addEventListener("resize", resize);
     resize();
 
     let targetHover = 0;
@@ -252,8 +252,8 @@ export default function Orb({
       targetHover = 0;
     };
 
-    container.addEventListener('mousemove', handleMouseMove);
-    container.addEventListener('mouseleave', handleMouseLeave);
+    container.addEventListener("mousemove", handleMouseMove);
+    container.addEventListener("mouseleave", handleMouseLeave);
 
     let rafId: number;
     const update = (t: number) => {
@@ -273,17 +273,26 @@ export default function Orb({
       }
       program.uniforms.rot.value = currentRot;
 
-      renderer.render({ scene: mesh });
+      const rendererWithRender = renderer as unknown as {
+        render?: (args: { scene: unknown }) => void;
+      };
+      const meshWithDraw = mesh as unknown as { draw?: () => void };
+
+      if (typeof rendererWithRender.render === "function") {
+        rendererWithRender.render({ scene: mesh });
+      } else if (typeof meshWithDraw.draw === "function") {
+        meshWithDraw.draw();
+      }
     };
     rafId = window.requestAnimationFrame(update);
 
     return () => {
       window.cancelAnimationFrame(rafId);
-      window.removeEventListener('resize', resize);
-      container.removeEventListener('mousemove', handleMouseMove);
-      container.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener("resize", resize);
+      container.removeEventListener("mousemove", handleMouseMove);
+      container.removeEventListener("mouseleave", handleMouseLeave);
       container.removeChild(gl.canvas);
-      gl.getExtension('WEBGL_lose_context')?.loseContext();
+      gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
   }, [hue, hoverIntensity, rotateOnHover, forceHoverState]);
 
