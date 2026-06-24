@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
-  Mail,
   MapPin,
   ArrowRight,
   Check,
@@ -117,29 +116,6 @@ export default function Contact() {
                 className="flex items-start gap-4"
               >
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Mail size={24} className="text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-1">
-                    Email
-                  </h3>
-                  <a
-                    href="mailto:thabhelo@deepubuntu.com"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    thabhelo@deepubuntu.com
-                  </a>
-                  <p className="text-muted-foreground text-sm mt-1">
-                    We respond within 24 hours
-                  </p>
-                </div>
-              </motion.div>
-
-              <motion.div
-                variants={itemVariants}
-                className="flex items-start gap-4"
-              >
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <MapPin size={24} className="text-primary" />
                 </div>
                 <div>
@@ -192,7 +168,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full px-4 py-2 rounded-lg bg-background border border-input text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-colors"
-                  placeholder="your@email.com"
+                  placeholder="Your email"
                 />
               </div>
 

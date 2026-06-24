@@ -123,7 +123,6 @@ export default function Privacy() {
               please contact us at:
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              <span className="block">Email: <span className="font-medium">thabhelo@deepubuntu.com</span></span>
               <span className="block">Location: Birmingham, Alabama, United States</span>
             </p>
           </section>
@@ -132,4 +131,3 @@ export default function Privacy() {
     </PageLayout>
   );
 }
-

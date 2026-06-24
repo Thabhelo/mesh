@@ -70,7 +70,6 @@ Authentication rules and access control should be configured in the Firebase con
 
 ## Contact
 
-- Email: `thabhelo@deepubuntu.com`
 - Location: Birmingham, Alabama, United States
 
 ## License

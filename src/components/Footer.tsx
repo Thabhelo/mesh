@@ -1,5 +1,5 @@
 import { Link as RouterLink } from 'react-router-dom';
-import { Mail, MapPin } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -75,12 +75,6 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-foreground mb-4">Contact</h3>
             <ul className="space-y-3">
-              <li className="flex items-center gap-2">
-                <Mail size={16} className="text-primary flex-shrink-0" />
-                <a href="mailto:thabhelo@deepubuntu.com" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                  thabhelo@deepubuntu.com
-                </a>
-              </li>
               <li className="flex items-start gap-2">
                 <MapPin size={16} className="text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-muted-foreground text-sm">
