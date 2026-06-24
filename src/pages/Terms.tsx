@@ -109,8 +109,7 @@ export default function Terms() {
               For questions about these Terms or about Mesh, contact us at:
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              <span className="block">Email: <span className="font-medium">thabheloduve@gmail.com</span></span>
-              <span className="block">Phone: <span className="font-medium">+1 (256) 375-4207</span></span>
+              <span className="block">Email: <span className="font-medium">thabhelo@deepubuntu.com</span></span>
               <span className="block">Location: Birmingham, Alabama, United States</span>
             </p>
           </section>
@@ -119,5 +118,4 @@ export default function Terms() {
     </PageLayout>
   );
 }
-
 

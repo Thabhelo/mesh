@@ -70,11 +70,9 @@ Authentication rules and access control should be configured in the Firebase con
 
 ## Contact
 
-- Email: `thabheloduve@gmail.com`
-- Phone: `+1 (256) 375-4207`
+- Email: `thabhelo@deepubuntu.com`
 - Location: Birmingham, Alabama, United States
 
 ## License
 
 Proprietary - Mesh Platform 2025
-
